@@ -2,10 +2,11 @@ from graphics import *
 
 import GameState
 
+BOARD_SCALE = 1
+
 # Container for Graphics Window and all graphis related functionality
 class Window():
 
-    BOARD_SCALE = 1
 
     def __init__(self):
         self.window = GraphWin("Tron",
