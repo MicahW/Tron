@@ -1,29 +1,29 @@
+SIZE_X = 200
+SIZE_Y = 200
+
 # Holds board values and player head values
 class GameState:
-    
-    SIZE_X = 200
-    SIZE_Y = 200
 
     # Create empty board and player states
     def __init__(self):
-        self.board = [[0] * SIZE_Y]] * SIZE_X
+        self.board = [[0] * SIZE_Y] * SIZE_X
 
         # players[player_
         self.players = {}
 
     # Called by server to set player direction on request
-    def set_direction(player_number, direction):
+    def set_direction(self, player_number, direction):
         pass
 
     # Called by server to update the game state
-    def tick()
+    def tick(self):
         pass
 
     # Called by server to add a new player, returns player number
-    def create_new_player():
+    def create_new_player(self):
         pass
 
     # Randomizes players on the edge of the board
-    def randomize_positions():
+    def randomize_positions(self):
         pass
 
