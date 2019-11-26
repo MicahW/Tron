@@ -2,10 +2,10 @@ import GameState
 import Window
 
 # Client class to connect to server, handle user inputs, and render the game
-class Client:
+class Game:
 
     def __init__(self):
         self.window = Window.Window()
 
-c = Client()
+c = Game()
 input("Press Enter to continue...")
