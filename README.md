@@ -12,7 +12,7 @@ All 1 byte unless stated otherwise.
 * Connecting: client connects to the server [ 0 ]
 * Connected: server sends client it's client number [ 1 | client number ]
 * State: containes last n position up to 6 any any dead or winner messages
-* [ 2 | winner | dead count| dead1 | ... | deadn | num clients | num positions | client number 1 | x1 (2 bytes) | y1 (2 bytes) | ... | client number n | .. x6 (2 bytes) | y6 (2 bytes)]
+* [ 2 | dead count| dead1 | ... | deadn | num clients | num positions | client number 1 | x1 (2 bytes) | y1 (2 bytes) | ... | client number n | .. x6 (2 bytes) | y6 (2 bytes)]
 * Direction: [ 3 | 0 = left, 1 = up, 2 = right, 3 = down]
 * Game Starting: [ 4 | { same data as game states } ]
 * Ack Game Starting: [ 5 ]

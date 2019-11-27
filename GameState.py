@@ -8,12 +8,13 @@ class GameState:
     def __init__(self):
         self.board = [[0] * SIZE_Y] * SIZE_X
 
-        # players[player_
+        # players[player_number] = [head_x, head_y, direction, alive])
         self.players = {}
 
     # Called by server to set player direction on request
     def set_direction(self, player_number, direction):
-        pass
+        if player_number in player.keys():
+            players[player_number][2] = direction
 
     # Called by server to update the game state
     def tick(self):
