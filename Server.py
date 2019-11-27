@@ -15,7 +15,7 @@ class Server:
     def send_game_starting(self):
         pass
 
-    # Listen for player direction messages
+    # Get any player directin inputs through non blocking calls for player direction messages
     def get_direction_inputs(self):
         pass
 
@@ -23,7 +23,7 @@ class Server:
     def update_game_state(self):
         pass
 
-    # Send out game state, dead, and winner messages
+    # Send out game state message
     def send_game_state(self):
         pass
 
