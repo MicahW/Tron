@@ -1,6 +1,7 @@
 SIZE_X = 200
 SIZE_Y = 200
 
+
 # Holds board values and player head values
 class GameState:
 
@@ -27,4 +28,3 @@ class GameState:
     # Randomizes players on the edge of the board
     def randomize_positions(self):
         pass
-
