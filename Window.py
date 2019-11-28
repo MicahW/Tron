@@ -35,3 +35,16 @@ class Window():
 
         self.portEntry = Entry(Point(self.size_x / 2, 250), 20)
         self.portEntry.draw(self.window)
+
+        self.connectButton = Rectangle(
+                                       Point((self.size_x / 2) - 40, 300),
+                                       Point((self.size_x / 2) + 40, 340))
+        self.connectButton.setFill("grey")
+        self.connectButton.draw(self.window)
+
+        connect_text = Text(Point(self.size_x / 2, 320), 'Connect')
+        connect_text.setTextColor("white")
+        connect_text.draw(self.window)
+
+
+        
