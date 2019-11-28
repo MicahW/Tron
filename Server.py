@@ -1,3 +1,9 @@
+import logging
+import argparse
+
+logger = logging.getLogger('Tron.Server')
+
+
 # The Tron server
 class Server:
 
@@ -32,3 +38,32 @@ class Server:
     # Start updating the game state and waiting for player direction messages
     def start_game(self):
         pass
+
+
+if __name__ == '__main__':
+
+    # Setup logging
+    logging.basicConfig(
+        format='[%(asctime)s.%(msecs)03d] %(levelname)s:%(name)s - %(message)s',
+        datefmt='%I:%M:%S')
+
+    tron_logger = logging.getLogger('Tron')
+    tron_logger.setLevel(logging.INFO)
+
+    # Setup command line arguments
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-v", "--verbosity",
+                        type=int, default=1, choices=[0, 1, 2],
+                        help="verbosity of output; default is 1")
+
+    # Process command line arguments
+    args = parser.parse_args()
+
+    if args.verbosity == 0:
+        tron_logger.setLevel(logging.ERROR)
+    elif args.verbosity == 2:
+        tron_logger.setLevel(logging.DEBUG)
+
+    # Start processing
+    logger.info("Starting")
