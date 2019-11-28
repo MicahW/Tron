@@ -7,6 +7,7 @@ class Game:
 
     def __init__(self):
         self.window = Window.Window()
+        self.window.render_start_screen()
 
     # Send a connecting message and receive a connected message
     # Store the client ID
