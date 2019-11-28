@@ -25,3 +25,8 @@ class Game:
     # format
     def get_game_state():
         pass
+
+game = Game()
+
+# TODO remove this wait for real block on user input
+input("Press any key to exit")
