@@ -17,6 +17,14 @@ class Window():
                                autoflush = False)
         self.window.setBackground("black")
 
+    def inside(self, point, rectangle):
+        """ Is point inside rectangle? """
+
+        ll = rectangle.getP1()  # assume p1 is ll (lower left)
+        ur = rectangle.getP2()  # assume p2 is ur (upper right)
+
+        return ll.getX() < point.getX() < ur.getX() and ll.getY() < point.getY() < ur.getY()
+
     def render_start_screen(self):
         titleText = Text(Point(self.size_x / 2, 20), 'Tron')
         titleText.setTextColor("white")
@@ -46,5 +54,8 @@ class Window():
         connect_text.setTextColor("white")
         connect_text.draw(self.window)
 
-
+    def get_connect_info(self):
+        while True:
+            if self.inside(self.window.getMouse(), self.connectButton):
+                return self.addrEntry.getText(), self.portEntry.getText()
         
