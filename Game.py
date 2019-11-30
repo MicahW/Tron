@@ -7,6 +7,12 @@ class Game:
 
     def __init__(self):
         self.window = Window.Window()
+        self.title_screen()
+    
+    def title_screen(self):
+        self.window.render_start_screen()
+        addr, port = self.window.get_connect_info()
+        print("{} {}".format(addr, port))
 
     # Send a connecting message and receive a connected message
     # Store the client ID
@@ -25,3 +31,5 @@ class Game:
     # format
     def get_game_state():
         pass
+
+game = Game()
