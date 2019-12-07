@@ -27,7 +27,7 @@ class GameState:
     # Called by server to update the game state
     # Returns a list of dead players
     def tick(self):
-        # Move each head then add it to the baord
+        # Move each head then add it to the board
         for player_number, (head_x, head_y, direction, alive) in self.players.items():
             if alive:
                 delta_x, delta_y = direction_map[direction]
@@ -45,6 +45,26 @@ class GameState:
                     self.players[player_number] = [head_x, head_y, direction, False]
 
         return dead_list
+
+    # Updates the game state from the information contained in a game state message
+    # client_states are lists of touples in the form (client_number, [(x0, y0), (x1, y1)])
+    def update(self, dead_list, client_states):
+        # Kill off dead players
+        for dead in dead_list:
+            if dead in self.players.keys():
+                self.players[dead][3] = False
+        
+        # Update each client states
+        for client_num, positions in client_states:
+            if (client_num in self.players.keys() and
+                len(positions) > 0):
+                # Set head position for (x0, y0)
+                self.players[client_num][0] = positions[0][0]
+                self.players[client_num][1] = positions[0][1]
+
+                # Set the board walls for the last player positions
+                for x, y in positions:
+                    self.board[x][y] = client_num
 
     # Called by server to add a new player, returns player number
     def create_new_player(self):
