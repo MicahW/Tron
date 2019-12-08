@@ -5,19 +5,63 @@ SIZE_Y = 200
 # Holds board values and player head values
 class GameState:
 
+    # Maps dirrection states to x and y position changes
     direction_map = {
-        0: [-1, 0],
-        1: [0, -1],
-        2: [1, 0],
-        3: [0, 1]
+        0: [-1, 0],  # Left
+        1: [0, -1],  # Up
+        2: [1, 0],   # Right
+        3: [0, 1]    # Down
     }
 
-    # Create empty board and player states
+    # Maximun number of players supported
+    MAX_PLAYERS = 4
+
+    # Player starting positions
+    starting_positions = [
+        [0, SIZE_Y / 2],           # Left side
+        [SIZE_X - 1, SIZE_Y / 2],  # Right side
+        [SIZE_X / 2, 0],           # Top
+        [SIZE_X / 2, SIZE_Y - 1]   # Bottom
+    ]
+
+    # Player starting directions
+    starting_directions = [
+        2,  # Right
+        0,  # Left
+        3,  # Down
+        1   # Up
+    ]
+
+    # Contructor to initialize an empty state
     def __init__(self):
+        self.init_empty_state()
+
+    def init_empty_state(self):
         self.board = [[0] * SIZE_Y] * SIZE_X
 
         # players[player_number] = [head_x, head_y, direction, alive])
         self.players = {}
+
+    # Set up the game state for the start of a game
+    def setup_game_start(self, player_numbers):
+        self.init_empty_state()
+        if len(player_numbers) > MAX_PLAYERS:
+            raise "Cannont set the game state for more players the supported"
+
+        # Add each player to the game
+        for i in range(0,len(player_numbers)):
+            player_number = player_numbers[i]
+            start_x = starting_positions[i][0]
+            start_y = starting_positions[i][1]
+
+            self.players[player_number] = [
+                start_x,
+                start_y,
+                self.starting_directions[i],
+                True
+            ]
+
+            self.board[start_x][start_y] = player_number
 
     # Called by server to set player direction on request
     def set_direction(self, player_number, direction):
