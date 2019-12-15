@@ -1,10 +1,12 @@
+import math
+
 SIZE_X = 200
 SIZE_Y = 200
-
+MAX_PLAYERS = 4
 
 # Holds board values and player head values
 class GameState:
-
+    
     # Maps dirrection states to x and y position changes
     direction_map = {
         0: [-1, 0],  # Left
@@ -13,15 +15,12 @@ class GameState:
         3: [0, 1]    # Down
     }
 
-    # Maximun number of players supported
-    MAX_PLAYERS = 4
-
     # Player starting positions
     starting_positions = [
-        [0, SIZE_Y / 2],           # Left side
-        [SIZE_X - 1, SIZE_Y / 2],  # Right side
-        [SIZE_X / 2, 0],           # Top
-        [SIZE_X / 2, SIZE_Y - 1]   # Bottom
+        [0, math.floor(SIZE_Y / 2)],                       # Left side
+        [SIZE_X - 1, math.floor(SIZE_Y / 2)],              # Right side
+        [math.floor(SIZE_X / 2), 0],                       # Top
+        [math.floor(SIZE_X / 2), math.floor(SIZE_Y - 1)]   # Bottom
     ]
 
     # Player starting directions
@@ -37,10 +36,19 @@ class GameState:
         self.init_empty_state()
 
     def init_empty_state(self):
-        self.board = [[0] * SIZE_Y] * SIZE_X
+        # Initialize an empty board with all zeros
+        self.board = []
+        for x in range(0, SIZE_X):
+            self.board.append([])
+            for y in range(0, SIZE_Y):
+                self.board[x].append(0)
 
         # players[player_number] = [head_x, head_y, direction, alive])
         self.players = {}
+
+    # Get the board
+    def get_board(self):
+        return self.board
 
     # Set up the game state for the start of a game
     def setup_game_start(self, player_numbers):
@@ -51,16 +59,14 @@ class GameState:
         # Add each player to the game
         for i in range(0,len(player_numbers)):
             player_number = player_numbers[i]
-            start_x = starting_positions[i][0]
-            start_y = starting_positions[i][1]
-
+            start_x = self.starting_positions[i][0]
+            start_y = self.starting_positions[i][1]
             self.players[player_number] = [
                 start_x,
                 start_y,
                 self.starting_directions[i],
                 True
             ]
-
             self.board[start_x][start_y] = player_number
 
     # Called by server to set player direction on request

@@ -17,6 +17,12 @@ class Window():
                                autoflush = False)
         self.window.setBackground("black")
 
+    # Clear the window
+    def clear(self):
+        for item in self.window.items[:]:
+            item.undraw()
+            win.update()
+
     def inside(self, point, rectangle):
         """ Is point inside rectangle? """
 
