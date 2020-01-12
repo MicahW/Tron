@@ -17,10 +17,10 @@ class GameState:
 
     # Player starting positions
     starting_positions = [
-        [0, math.floor(SIZE_Y / 2)],                       # Left side
-        [SIZE_X - 1, math.floor(SIZE_Y / 2)],              # Right side
-        [math.floor(SIZE_X / 2), 0],                       # Top
-        [math.floor(SIZE_X / 2), math.floor(SIZE_Y - 1)]   # Bottom
+        [0, int(SIZE_Y / 2)],                # Left side
+        [SIZE_X - 1, int(SIZE_Y / 2)],       # Right side
+        [int(SIZE_X / 2), 0],                # Top
+        [int(SIZE_X / 2), int(SIZE_Y - 1)]   # Bottom
     ]
 
     # Player starting directions
