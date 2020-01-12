@@ -31,6 +31,22 @@ class Window():
 
         return ll.getX() < point.getX() < ur.getX() and ll.getY() < point.getY() < ur.getY()
 
+    # Draw a block at a game state position
+    def draw_block(self, board_x, board_y):
+        x1 = board_x * BOARD_SCALE
+        y1 = board_x * BOARD_SCALE
+        x2 = x1 + BOARD_SCALE
+        y2 = y2 + BOARD_SCALE
+        block = Rectangle(Point(x1, y1), Point(x2, y2))
+        block.draw(self.window)
+
+    def render_game(self, game_state):
+        board = game_state.get_board()
+        for x in range(0,len(board)):
+            for y in range(0,len(board[x])):
+                if board[x][y] != 0:
+                    self.draw_block(x, y)
+
     def render_start_screen(self):
         titleText = Text(Point(self.size_x / 2, 20), 'Tron')
         titleText.setTextColor("white")
